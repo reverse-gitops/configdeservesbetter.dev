@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="190" y1="70" x2="1000" y2="560" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0f1a1c" />
+      <stop offset="0.55" stop-color="#0d1117" />
+      <stop offset="1" stop-color="#050816" />
+    </linearGradient>
+    <linearGradient id="knob-grad" x1="3" y1="3" x2="21" y2="21" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#34d399" />
+      <stop offset="50%" stop-color="#2dd4bf" />
+      <stop offset="100%" stop-color="#60a5fa" />
+    </linearGradient>
+    <linearGradient id="text-grad" x1="560" y1="0" x2="1080" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#34d399" />
+      <stop offset="50%" stop-color="#2dd4bf" />
+      <stop offset="100%" stop-color="#60a5fa" />
+    </linearGradient>
+    <radialGradient id="glow-a" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(330 140) rotate(35) scale(520 320)">
+      <stop offset="0" stop-color="#2dd4bf" stop-opacity="0.22" />
+      <stop offset="1" stop-color="#2dd4bf" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="glow-b" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(920 520) rotate(180) scale(620 300)">
+      <stop offset="0" stop-color="#60a5fa" stop-opacity="0.10" />
+      <stop offset="1" stop-color="#60a5fa" stop-opacity="0" />
+    </radialGradient>
+    <filter id="shadow" x="0" y="0" width="1200" height="630" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="28" stdDeviation="36" flood-color="#020617" flood-opacity="0.55" />
+    </filter>
+  </defs>
+  <rect width="1200" height="630" fill="#0d1117" />
+  <rect width="1200" height="630" rx="36" fill="url(#bg)" />
+  <rect width="1200" height="630" rx="36" fill="url(#glow-a)" />
+  <rect width="1200" height="630" rx="36" fill="url(#glow-b)" />
+  <g opacity="0.12">
+    <path d="M0 94h1200" stroke="#94a3b8" />
+    <path d="M0 536h1200" stroke="#94a3b8" />
+    <path d="M120 0v630" stroke="#94a3b8" />
+    <path d="M1080 0v630" stroke="#94a3b8" />
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="150" y="135" width="360" height="360" rx="36" fill="#0b1220" fill-opacity="0.88" stroke="#1f2937" />
+    <g transform="translate(186 171) scale(12)" stroke-linecap="round" stroke-linejoin="round">
+      <g stroke="#7d8590" stroke-width="1.5">
+        <path d="M10 5H3" />
+        <path d="M21 5h-7" />
+        <path d="M8 12H3" />
+        <path d="M21 12h-9" />
+        <path d="M12 19H3" />
+        <path d="M21 19h-5" />
+      </g>
+      <g stroke="url(#knob-grad)" stroke-width="2">
+        <path d="M14 3v4" />
+        <path d="M8 10v4" />
+        <path d="M16 17v4" />
+      </g>
+    </g>
+  </g>
+  <g font-family="DejaVu Sans Mono, Noto Sans Mono, monospace">
+    <text x="566" y="282" fill="#7d8590" font-size="64" letter-spacing="-2">Config</text>
+    <text x="566" y="362" fill="url(#text-grad)" font-size="64" letter-spacing="-2">deserves</text>
+    <text x="566" y="442" fill="url(#text-grad)" font-size="64" letter-spacing="-2">better.</text>
+  </g>
+</svg>

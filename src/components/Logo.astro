@@ -1,0 +1,35 @@
+---
+// Lucide "sliders-horizontal": the rails in grey, the knobs in the wordmark
+// gradient — the settings are the part that gets attention. The gradient is in
+// icon coordinates: on a straight line a bounding-box gradient has zero width
+// and paints nothing.
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+const gradientId = 'cdb-grad';
+---
+
+<svg class={className} viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <defs>
+    <linearGradient id={gradientId} x1="3" y1="3" x2="21" y2="21" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#34d399" />
+      <stop offset="50%" stop-color="#2dd4bf" />
+      <stop offset="100%" stop-color="#60a5fa" />
+    </linearGradient>
+  </defs>
+  <g stroke="#7d8590">
+    <path d="M10 5H3" />
+    <path d="M21 5h-7" />
+    <path d="M8 12H3" />
+    <path d="M21 12h-9" />
+    <path d="M12 19H3" />
+    <path d="M21 19h-5" />
+  </g>
+  <g stroke={`url(#${gradientId})`} stroke-width="2">
+    <path d="M14 3v4" />
+    <path d="M8 10v4" />
+    <path d="M16 17v4" />
+  </g>
+</svg>

@@ -1,0 +1,133 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Logo from '../components/Logo.astro';
+import { GitPullRequest } from 'lucide-astro';
+import { title, isDraft, blocks, promises, plain } from '../lib/manifesto';
+import { REPO, REPO_URL } from '../lib/site';
+
+// "Config Deserves Better" → muted first word, gradient for the rest.
+const [titleHead, ...titleTail] = title.split(' ');
+
+const tagline = promises.map((p) => `${plain(p.title)}.`).join(' ');
+const pad = (n: number) => String(n).padStart(2, '0');
+
+// The opening paragraph is the hook.
+const opening = blocks.find((b) => b.kind === 'html');
+if (opening) opening.html = opening.html.replace('<p>', '<p class="lead">');
+
+// The overview of all promises goes right before the first one.
+const firstPromise = blocks.findIndex((b) => b.kind === 'promise');
+
+const apiRes = await fetch(`https://api.github.com/repos/${REPO}`).catch(() => undefined);
+const repoData = apiRes?.ok ? await apiRes.json() : {};
+const stars: number | undefined = repoData.stargazers_count;
+---
+
+<Layout>
+  <div class="hero">
+    <div class="hero-glow"></div>
+    <div class="hero-inner">
+      {isDraft && <p class="draft-badge">Draft · feedback welcome</p>}
+      <h1 class="wordmark">
+        <span class="w-config">{titleHead}<Logo class="logo-sliders" /></span>
+        <span class="w-better">{titleTail.join(' ')}</span>
+      </h1>
+      <p class="hero-tagline">{tagline}</p>
+      <div class="hero-actions">
+        <a href="#manifesto" class="hero-cta">Read the manifesto ↓</a>
+        <a href={REPO_URL} class="star-badge" target="_blank" rel="noopener noreferrer">
+          <svg class="star-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"/></svg>
+          Star on GitHub
+          {stars !== undefined && <span class="star-count">{stars}</span>}
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <main id="manifesto">
+    <article class="manifesto">
+      {
+        blocks.map((block, i) => (
+          <>
+            {i === firstPromise && (
+              <nav class="overview" aria-label="The promises and their principles">
+                {promises.map((p) => (
+                  <div class="overview-card">
+                    <a href={`#${p.id}`} class="overview-head">
+                      <span class="overview-kicker">Promise {p.number}</span>
+                      <span class="overview-title" set:html={p.title} />
+                    </a>
+                    <ol class="overview-list">
+                      {p.principles.map((pr) => (
+                        <li>
+                          <a href={`#${pr.id}`}>
+                            <span class="overview-num">{pad(pr.number)}</span>
+                            <span set:html={pr.title} />
+                          </a>
+                        </li>
+                      ))}
+                    </ol>
+                  </div>
+                ))}
+              </nav>
+            )}
+
+            {block.kind === 'html' && <Fragment set:html={block.html} />}
+
+            {block.kind === 'promise' && (
+              <section class="promise" id={block.promise.id}>
+                <header class="promise-head">
+                  <span class="promise-kicker">
+                    Promise {block.promise.number} of {promises.length}
+                  </span>
+                  <h2 set:html={block.promise.title} />
+                </header>
+                <Fragment set:html={block.promise.intro} />
+                {block.promise.principles.map((pr) => (
+                  <article class="principle" id={pr.id}>
+                    <h3 class="principle-title">
+                      <a href={`#${pr.id}`} class="principle-num" aria-label={`Link to principle ${pr.number}`}>
+                        {pad(pr.number)}
+                      </a>
+                      <span set:html={pr.title} />
+                    </h3>
+                    {pr.now && (
+                      <div class="contrast now">
+                        <span class="contrast-label">Now</span>
+                        <Fragment set:html={pr.now} />
+                      </div>
+                    )}
+                    {pr.better && (
+                      <div class="contrast better">
+                        <span class="contrast-label">Better</span>
+                        <Fragment set:html={pr.better} />
+                      </div>
+                    )}
+                    <Fragment set:html={pr.rest} />
+                  </article>
+                ))}
+              </section>
+            )}
+
+            {block.kind === 'quote' && (
+              <div class="pull-quote">
+                {block.lines.map((line, n) => (
+                  <p class:list={['pull-line', { 'pull-accent': n === block.lines.length - 1 }]} set:html={line} />
+                ))}
+              </div>
+            )}
+          </>
+        ))
+      }
+
+      <aside class="contribute">
+        <GitPullRequest class="contribute-icon" size={18} />
+        <p>
+          {isDraft ? 'This manifesto is a draft.' : 'This manifesto is open.'} Disagree, or have something to add?
+          {' '}<a href={`${REPO_URL}/edit/main/manifesto.md`} target="_blank" rel="noopener noreferrer">Propose a change</a>
+          {' '}or <a href={`${REPO_URL}/issues`} target="_blank" rel="noopener noreferrer">open an issue</a> on GitHub.
+        </p>
+      </aside>
+    </article>
+  </main>
+</Layout>

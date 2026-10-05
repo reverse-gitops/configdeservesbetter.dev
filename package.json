@@ -1,0 +1,23 @@
+{
+  "name": "configdeservesbetter-dev",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "render:images": "node scripts/render-images.mjs",
+    "prebuild": "npm run render:images",
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "astro": "^7.3.3",
+    "lucide-astro": "^0.556.0",
+    "marked": "^15.0.0"
+  },
+  "devDependencies": {
+    "@resvg/resvg-js": "^2.6.2"
+  },
+  "allowScripts": {
+    "esbuild": true
+  }
+}

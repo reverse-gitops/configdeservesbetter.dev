@@ -1,0 +1,87 @@
+---
+import '../styles/global.css';
+import githubCornerSvg from '../assets/github-corner.svg?raw';
+import { title as siteName, description as manifestoDescription, promises, plain } from '../lib/manifesto';
+import { REPO_URL } from '../lib/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = siteName, description = manifestoDescription } = Astro.props;
+
+const pageTitle = title === siteName ? title : `${title} · ${siteName}`;
+const currentPath = Astro.url.pathname;
+const canonicalUrl = new URL(currentPath, Astro.site);
+const ogImageUrl = new URL('/og-image.png', Astro.site);
+const anchorBase = currentPath === '/' ? '' : '/';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!-- Discovery for crawlers and agents -->
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+    <link rel="alternate" type="text/plain" href="/llms.txt" title="llms.txt summary of this site" />
+    <link rel="alternate" type="text/markdown" href="/manifesto.md" title="The manifesto in Markdown" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:alt" content={`${siteName} logo and wordmark`} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <a href={REPO_URL} class="github-corner" aria-label="Star us on GitHub" target="_blank" rel="noopener noreferrer" set:html={githubCornerSvg} />
+
+    <nav class="site-nav">
+      <a href="/" class="nav-logo" aria-label={`${siteName} home`}>
+        <span class="nav-config">config</span><span class="nav-better">deservesbetter</span>
+      </a>
+      <div class="nav-links">
+        {promises.map((p) => (
+          <a href={`${anchorBase}#${p.id}`} class="nav-link">{plain(p.title)}</a>
+        ))}
+      </div>
+    </nav>
+
+    <slot />
+
+    <footer>
+      <p>
+        Powered by <a href="https://koudijs.dev" target="_blank" rel="noopener noreferrer">koudijs.dev</a>
+        {' '}and <a href="https://configbutler.ai" target="_blank" rel="noopener noreferrer">ConfigButler</a>
+      </p>
+      <p>
+        Sister site: <a href="https://reversegitops.dev" target="_blank" rel="noopener noreferrer">reversegitops.dev</a>
+      </p>
+      <p>
+        <a href={`${REPO_URL}/blob/main/manifesto.md`} target="_blank" rel="noopener noreferrer">manifesto.md</a>
+        {' '}·{' '}
+        <a href={`${REPO_URL}/actions/workflows/deploy.yml`} target="_blank" rel="noopener noreferrer">↺ Rebuild site</a>
+      </p>
+    </footer>
+  </body>
+</html>
