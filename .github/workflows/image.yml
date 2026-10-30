@@ -1,0 +1,76 @@
+name: image
+
+on:
+  push:
+    branches: ['**']            # every branch, before a PR is opened
+  workflow_dispatch:
+
+# One build per branch at a time; a newer push supersedes an older one.
+concurrency:
+  group: image-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  packages: write               # push to ghcr.io
+
+env:
+  IMAGE: ghcr.io/${{ github.repository }}   # -> ghcr.io/reverse-gitops/configdeservesbetter.dev
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Setup Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      # Astro emits root-relative links, so the same build serves any host;
+      # `site` in astro.config.mjs only sets the canonical and og:url.
+      - name: Build site
+        run: npm run build
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v4
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Image tags
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.IMAGE }}
+          tags: |
+            # :<branch>     (human-friendly, moves)
+            type=ref,event=branch
+            # :sha-<short>  (immutable — what deployments pin to)
+            type=sha,format=short
+
+      # Push first, so the image stays available to inspect even when the
+      # blocking routing test below fails.
+      - name: Build & push
+        uses: docker/build-push-action@v7
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+
+      # Blocking gate: pull the image we just pushed and verify /talks and
+      # /talks/ both serve a real page — no redirect, no :8080 leak — that the
+      # stylesheets load, and that unknown paths 404. A failure here fails the
+      # job (and the commit/PR check), but the image was already pushed above
+      # so it is still inspectable.
+      - name: Routing tests (pages, stylesheets, content types)
+        run: |
+          IMAGE="$(printf '%s\n' "${{ steps.meta.outputs.tags }}" | head -n1)" \
+            ./test/routing.sh
