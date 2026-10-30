@@ -17,37 +17,6 @@ const TESTNET_URL = 'https://www.testnet.org/evenement/entry/29924/?evenement=vo
         <h2 class="section-label">Upcoming</h2>
         <div class="talk-card">
           <div class="talk-meta">
-            <span class="talk-event">Dutch Cloud Native Day 2026</span>
-            <span class="talk-sep">·</span>
-            <MapPin size={13} style="flex-shrink:0;opacity:0.7" />
-            <span class="talk-date">Jaarbeurs, Utrecht · October 30, 2026 · 14:40–15:10 CET · Mission 2</span>
-          </div>
-          <h3 class="talk-title">We GitOps'd Everything Except the Settings That Break Production</h3>
-          <p class="talk-desc">
-            Software teams have a delivery process for code. But what about the runtime
-            configuration around that code? It is often self-service for end users, hidden behind
-            admin screens and custom database tables, and changed outside the delivery process.
-            Feature flags, business rules, and specific domain settings can change production
-            behaviour just as much as new code.
-          </p>
-          <p class="talk-desc">
-            This talk starts with application settings that broke production, and each one leads
-            back to the same uncomfortable questions: who made the change, where was it
-            validated, and how do we stop the next one? Could important product configuration
-            live in a separate Git repo, reviewed and promoted like code, while the people who
-            change it never see Git and just use a nice settings screen? The session covers the
-            design of an open-source tool built to explore this, where it gets hard (conflicts,
-            concurrency, and putting real authors on Git commits), and a live demo with the whole
-            audience as admins.
-          </p>
-          <div class="talk-links">
-            <a href={DCND_URL} class="talk-link" target="_blank" rel="noopener noreferrer">Dutch Cloud Native Day 2026 →</a>
-            <a href={DCND_SLIDES_URL} class="talk-link secondary" target="_blank" rel="noopener noreferrer">Slides</a>
-          </div>
-        </div>
-
-        <div class="talk-card">
-          <div class="talk-meta">
             <span class="talk-event">Øredev 2026</span>
             <span class="talk-sep">·</span>
             <MapPin size={13} style="flex-shrink:0;opacity:0.7" />
@@ -97,6 +66,37 @@ const TESTNET_URL = 'https://www.testnet.org/evenement/entry/29924/?evenement=vo
 
       <section>
         <h2 class="section-label">Past</h2>
+        <div class="talk-card">
+          <div class="talk-meta">
+            <span class="talk-event">Dutch Cloud Native Day 2026</span>
+            <span class="talk-sep">·</span>
+            <MapPin size={13} style="flex-shrink:0;opacity:0.7" />
+            <span class="talk-date">Jaarbeurs, Utrecht · October 30, 2026</span>
+          </div>
+          <h3 class="talk-title">We GitOps'd Everything Except the Settings That Break Production</h3>
+          <p class="talk-desc">
+            Software teams have a delivery process for code. But what about the runtime
+            configuration around that code? It is often self-service for end users, hidden behind
+            admin screens and custom database tables, and changed outside the delivery process.
+            Feature flags, business rules, and specific domain settings can change production
+            behaviour just as much as new code.
+          </p>
+          <p class="talk-desc">
+            This talk starts with application settings that broke production, and each one leads
+            back to the same uncomfortable questions: who made the change, where was it
+            validated, and how do we stop the next one? Could important product configuration
+            live in a separate Git repo, reviewed and promoted like code, while the people who
+            change it never see Git and just use a nice settings screen? The session covers the
+            design of an open-source tool built to explore this, where it gets hard (conflicts,
+            concurrency, and putting real authors on Git commits), and a live demo with the whole
+            audience as admins.
+          </p>
+          <div class="talk-links">
+            <a href={DCND_URL} class="talk-link" target="_blank" rel="noopener noreferrer">Dutch Cloud Native Day 2026 →</a>
+            <a href={DCND_SLIDES_URL} class="talk-link secondary" target="_blank" rel="noopener noreferrer">Slides</a>
+          </div>
+        </div>
+
         <div class="talk-card">
           <div class="talk-meta">
             <span class="talk-event">TestNet Spring Event 2026</span>
