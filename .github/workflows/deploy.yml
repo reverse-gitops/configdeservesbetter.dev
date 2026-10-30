@@ -40,6 +40,10 @@ jobs:
         uses: actions/upload-pages-artifact@v5
         with:
           path: dist
+          # lucide-astro ships a hidden `.Layout.astro`, so Astro can name the
+          # shared stylesheet `_astro/.Layout.[hash].css`. Without this the
+          # upload drops it and the site renders unstyled.
+          include-hidden-files: true
 
   deploy:
     name: Deploy
