@@ -26,6 +26,7 @@ ${isDraft ? 'The manifesto is a draft. ' : ''}It argues that configuration — t
 
 - [Home](${url('/')}): The manifesto in full.
 - [Markdown](${url('/manifesto.md')}): The same manifesto as plain Markdown.
+- [Talks](${url('/talks/')}): Upcoming and past talks on configuration.
 
 ## Principles
 
