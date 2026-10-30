@@ -64,6 +64,7 @@ const anchorBase = currentPath === '/' ? '' : '/';
         {promises.map((p) => (
           <a href={`${anchorBase}#${p.id}`} class="nav-link">{plain(p.title)}</a>
         ))}
+        <a href="/talks" class:list={['nav-link', { 'nav-active': currentPath.startsWith('/talks') }]}>Talks</a>
       </div>
     </nav>
 

@@ -596,6 +596,110 @@ main {
   color: var(--muted);
 }
 
+/* ── Inner pages ── */
+.nav-active {
+  color: var(--accent) !important;
+}
+
+.page-content {
+  max-width: var(--max-w);
+  margin: 0 auto;
+}
+
+.page-title {
+  font-family: var(--font-mono);
+  font-size: clamp(1.8rem, 5vw, 2.4rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  margin-bottom: 2rem;
+}
+
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+section:first-of-type .section-label { margin-top: 0; }
+
+/* ── Talk cards ── */
+.talk-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.talk-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.78rem;
+  font-family: var(--font-mono);
+}
+
+.talk-event { color: var(--accent); }
+.talk-date  { color: var(--muted); }
+.talk-sep   { color: var(--border-hi); }
+
+.talk-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.4;
+  margin-bottom: 1rem;
+}
+
+.talk-desc {
+  color: var(--body);
+  font-size: 0.95rem;
+  line-height: 1.75;
+  margin-bottom: 0.9rem;
+}
+
+.talk-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.talk-link {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--accent);
+  text-decoration: none;
+  border: 1px solid var(--accent-md);
+  background: var(--accent-lo);
+  padding: 0.4rem 0.9rem;
+  border-radius: 100px;
+  transition: background 0.2s;
+}
+
+.talk-link:hover {
+  background: rgba(45, 212, 191, 0.2);
+}
+
+.talk-link.secondary {
+  color: var(--muted);
+  border-color: var(--border-hi);
+  background: var(--raised);
+}
+
+.talk-link.secondary:hover {
+  color: var(--text);
+  background: var(--border);
+}
+
 /* ── Footer ── */
 footer {
   border-top: 1px solid var(--border);
