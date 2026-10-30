@@ -45,6 +45,17 @@ Every push to `main` builds and deploys through `.github/workflows/deploy.yml`. 
 2. **Settings → Pages → Custom domain:** `configdeservesbetter.dev`, then enforce HTTPS once the certificate is issued.
 3. At the DNS provider, point the apex at GitHub Pages (`A` records `185.199.108.153`, `.109.153`, `.110.153`, `.111.153`, and the matching `AAAA` records).
 
+## Container image
+
+Every push, on any branch, also builds an nginx image of the site through `.github/workflows/image.yml`. It is not used for production yet; GitHub Pages still serves the site.
+
+| Tag | What |
+| --- | --- |
+| `ghcr.io/reverse-gitops/configdeservesbetter.dev:<branch>` | Latest build of that branch; moves |
+| `ghcr.io/reverse-gitops/configdeservesbetter.dev:sha-<short>` | One commit; never moves |
+
+The container listens on `:8080`. `test/routing.sh` runs against the pushed image and fails the build if a page redirects, a stylesheet is missing or a text file is served with the wrong type. Run it locally with `test/routing.sh` (needs Docker).
+
 ## Attributions
 
 - GitHub corner ribbon by [Tim Holman](https://github.com/tholman/github-corners) (MIT License)

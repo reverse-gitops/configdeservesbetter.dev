@@ -1,0 +1,16 @@
+# https://docs.github.com/code-security/dependabot/dependabot-version-updates
+version: 2
+updates:
+  # Base image in the Dockerfile (nginx-unprivileged). Bumps are exercised by
+  # the routing test before they can merge.
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+
+  # Actions used across the workflows: actions/checkout, actions/setup-node,
+  # the Pages actions and the docker/* actions.
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
