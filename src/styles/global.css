@@ -115,6 +115,32 @@ body {
   padding-bottom: 0.08em;
 }
 
+.hero-equation {
+  font-family: var(--font-mono);
+  font-size: clamp(0.85rem, 3.2vw, 1.35rem);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+
+.eq-op {
+  margin: 0 0.15em;
+}
+
+.eq-settings {
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 600;
+}
+
+.eq-result {
+  color: var(--text);
+  font-weight: 600;
+}
+
 .hero-tagline {
   font-size: clamp(0.95rem, 2.5vw, 1.15rem);
   color: var(--muted);
