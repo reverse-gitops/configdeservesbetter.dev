@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import { MapPin } from 'lucide-astro';
 
+const CONTACT_URL = 'https://calendar.app.google/c2jMcQgREVgbKEj18';
 const DCND_URL = 'https://www.dutchcloudnativeday.nl/';
 const DCND_SLIDES_URL = 'https://github.com/reverse-gitops/talks/blob/main/dist/20261030-settings-that-break-production.pdf';
 const FRONTMANIA_URL = 'https://frontmania.com/';
@@ -16,6 +17,16 @@ const TESTNET_URL = 'https://www.testnet.org/evenement/entry/29924/?evenement=vo
   <main>
     <div class="page-content">
       <h1 class="page-title">Talks</h1>
+
+      <section>
+        <h2 class="section-label">Upcoming</h2>
+        <div class="talk-card">
+          <h3 class="talk-title">Your conference?</h3>
+          <div class="talk-links">
+            <a href={CONTACT_URL} class="talk-link" target="_blank" rel="noopener noreferrer">Contact Simon →</a>
+          </div>
+        </div>
+      </section>
 
       <section>
         <h2 class="section-label">Past</h2>
