@@ -3,8 +3,10 @@ import Layout from '../layouts/Layout.astro';
 import { MapPin } from 'lucide-astro';
 
 const DCND_URL = 'https://www.dutchcloudnativeday.nl/';
-const DCND_SLIDES_URL = 'https://github.com/reverse-gitops/talks/blob/main/dist/settings-that-break-production.pdf';
+const DCND_SLIDES_URL = 'https://github.com/reverse-gitops/talks/blob/main/dist/20261030-settings-that-break-production.pdf';
 const OREDEV_URL = 'https://oredev.org/program/da064424-8d62-40e7-bdf9-c0f082f422e9';
+const OREDEV_CONFIG_SLIDES_URL = 'https://github.com/reverse-gitops/talks/blob/main/dist/20261105-config-deserves-better.pdf';
+const OREDEV_ABUSING_SLIDES_URL = 'https://github.com/reverse-gitops/talks/blob/main/dist/20261106-abusing-kubernetes-api.pdf';
 const TESTNET_URL = 'https://www.testnet.org/evenement/entry/29924/?evenement=voorjaarsevenement-2026';
 ---
 
@@ -14,13 +16,37 @@ const TESTNET_URL = 'https://www.testnet.org/evenement/entry/29924/?evenement=vo
       <h1 class="page-title">Talks</h1>
 
       <section>
-        <h2 class="section-label">Upcoming</h2>
+        <h2 class="section-label">Past</h2>
         <div class="talk-card">
           <div class="talk-meta">
             <span class="talk-event">Øredev 2026</span>
             <span class="talk-sep">·</span>
             <MapPin size={13} style="flex-shrink:0;opacity:0.7" />
-            <span class="talk-date">Malmö · November 5, 2026 · 14:55–15:35 CET · STAMP</span>
+            <span class="talk-date">Malmö · November 6, 2026</span>
+          </div>
+          <h3 class="talk-title">(Ab)using the Kubernetes API as a Configuration Backend</h3>
+          <p class="talk-desc">
+            Configuration-heavy products often reinvent the same backend machinery: typed objects,
+            validation, permissions, audit trails, and some form of realtime change propagation.
+            Over time, that configuration backend starts to look a lot like a control plane.
+          </p>
+          <p class="talk-desc">
+            This talk explores the Kubernetes API as a backend for configuration-heavy software
+            products rather than as an infrastructure surface, including what the approach enables,
+            which trade-offs it introduces, and where the model starts to break down.
+          </p>
+          <div class="talk-links">
+            <a href={OREDEV_URL} class="talk-link" target="_blank" rel="noopener noreferrer">Øredev 2026 speaker page →</a>
+            <a href={OREDEV_ABUSING_SLIDES_URL} class="talk-link secondary" target="_blank" rel="noopener noreferrer">Slides</a>
+          </div>
+        </div>
+
+        <div class="talk-card">
+          <div class="talk-meta">
+            <span class="talk-event">Øredev 2026</span>
+            <span class="talk-sep">·</span>
+            <MapPin size={13} style="flex-shrink:0;opacity:0.7" />
+            <span class="talk-date">Malmö · November 5, 2026</span>
           </div>
           <h3 class="talk-title">Configuration Deserves a Software Delivery Process Too</h3>
           <p class="talk-desc">
@@ -37,35 +63,10 @@ const TESTNET_URL = 'https://www.testnet.org/evenement/entry/29924/?evenement=vo
           </p>
           <div class="talk-links">
             <a href={OREDEV_URL} class="talk-link" target="_blank" rel="noopener noreferrer">Øredev 2026 speaker page →</a>
+            <a href={OREDEV_CONFIG_SLIDES_URL} class="talk-link secondary" target="_blank" rel="noopener noreferrer">Slides</a>
           </div>
         </div>
 
-        <div class="talk-card">
-          <div class="talk-meta">
-            <span class="talk-event">Øredev 2026</span>
-            <span class="talk-sep">·</span>
-            <MapPin size={13} style="flex-shrink:0;opacity:0.7" />
-            <span class="talk-date">Malmö · November 6, 2026 · 11:15–11:55 CET · TURING</span>
-          </div>
-          <h3 class="talk-title">(Ab)using the Kubernetes API as a Configuration Backend</h3>
-          <p class="talk-desc">
-            Configuration-heavy products often reinvent the same backend machinery: typed objects,
-            validation, permissions, audit trails, and some form of realtime change propagation.
-            Over time, that configuration backend starts to look a lot like a control plane.
-          </p>
-          <p class="talk-desc">
-            This talk explores the Kubernetes API as a backend for configuration-heavy software
-            products rather than as an infrastructure surface, including what the approach enables,
-            which trade-offs it introduces, and where the model starts to break down.
-          </p>
-          <div class="talk-links">
-            <a href={OREDEV_URL} class="talk-link" target="_blank" rel="noopener noreferrer">Øredev 2026 speaker page →</a>
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <h2 class="section-label">Past</h2>
         <div class="talk-card">
           <div class="talk-meta">
             <span class="talk-event">Dutch Cloud Native Day 2026</span>
