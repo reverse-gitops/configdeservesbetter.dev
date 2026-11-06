@@ -4,6 +4,8 @@ import { MapPin } from 'lucide-astro';
 
 const DCND_URL = 'https://www.dutchcloudnativeday.nl/';
 const DCND_SLIDES_URL = 'https://github.com/reverse-gitops/talks/blob/main/dist/20261030-settings-that-break-production.pdf';
+const FRONTMANIA_URL = 'https://frontmania.com/';
+const FRONTMANIA_SLIDES_URL = 'https://github.com/reverse-gitops/talks/blob/main/dist/20261007-be-bffs-with-the-kubernetes-api.pdf';
 const OREDEV_URL = 'https://oredev.org/program/da064424-8d62-40e7-bdf9-c0f082f422e9';
 const OREDEV_CONFIG_SLIDES_URL = 'https://github.com/reverse-gitops/talks/blob/main/dist/20261105-config-deserves-better.pdf';
 const OREDEV_ABUSING_SLIDES_URL = 'https://github.com/reverse-gitops/talks/blob/main/dist/20261106-abusing-kubernetes-api.pdf';
@@ -95,6 +97,35 @@ const TESTNET_URL = 'https://www.testnet.org/evenement/entry/29924/?evenement=vo
           <div class="talk-links">
             <a href={DCND_URL} class="talk-link" target="_blank" rel="noopener noreferrer">Dutch Cloud Native Day 2026 →</a>
             <a href={DCND_SLIDES_URL} class="talk-link secondary" target="_blank" rel="noopener noreferrer">Slides</a>
+          </div>
+        </div>
+
+        <div class="talk-card">
+          <div class="talk-meta">
+            <span class="talk-event">Frontmania 2026</span>
+            <span class="talk-sep">·</span>
+            <MapPin size={13} style="flex-shrink:0;opacity:0.7" />
+            <span class="talk-date">Jaarbeurs, Utrecht · October 7, 2026</span>
+          </div>
+          <h3 class="talk-title">Be BFFs with the Kubernetes API</h3>
+          <p class="talk-desc">
+            Kubernetes is famous for running containers, but its API model is the interesting
+            part: flexible resources, desired state, live updates through watches, validation,
+            and advanced access control. Platform engineers use these ideas every day.
+            Frontenders usually only get the boring REST endpoint at the end. Isn't that a missed
+            opportunity?
+          </p>
+          <p class="talk-desc">
+            The talk runs an open-source coffee-ordering demo where the whole audience gets admin
+            rights and configures it from their phones, showing how live updates are not only
+            cool but genuinely useful for handling conflicts. This is not a talk about exposing
+            production infrastructure to the public internet. It is about running a small,
+            dedicated Kubernetes API server as a product backend — and asking whether Kubernetes
+            could become your Backend for Frontend.
+          </p>
+          <div class="talk-links">
+            <a href={FRONTMANIA_URL} class="talk-link" target="_blank" rel="noopener noreferrer">Frontmania 2026 →</a>
+            <a href={FRONTMANIA_SLIDES_URL} class="talk-link secondary" target="_blank" rel="noopener noreferrer">Slides</a>
           </div>
         </div>
 
